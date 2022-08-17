@@ -1,0 +1,56 @@
+.confirm-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    .confirm-bd {
+        border: solid 1px #ddd;
+        border-radius: 16px;
+        font-size: 32px;
+        min-width: 50%;
+        max-width: 60%;
+        max-height: 60%;
+        color: #333;
+        background-color: #fff;
+
+        .confirm-hd {
+            font-size: 42px;
+            font-weight: 500;
+            text-align: center;
+            padding-top: 32px;
+        }
+
+        .confirm-content {
+            padding: 32px;
+            color: #646566;
+            max-height: 200px;
+            overflow: auto;
+        }
+
+        .confirm-btns {
+            display: flex;
+            border-top: solid 1px #ebedf0;
+
+            .btn {
+                flex: 1;
+                border: none;
+                text-align: center;
+                padding: 32px 0;
+
+                &:active {
+                    background-color: #ebedf0;
+                }
+
+                &+.btn {
+                    border-left: solid 1px #ebedf0;
+                }
+            }
+        }
+    }
+}
