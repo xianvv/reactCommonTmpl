@@ -1,1 +1,1 @@
-# reactCommonTmpl 1
+# reactCommonTmpl 2
