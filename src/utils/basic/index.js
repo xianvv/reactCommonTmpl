@@ -10,3 +10,4 @@ export * from './ua';
 export * from './todoMgr';
 export * from './buildCompFunc';
 export * from './useStateWrap';
+export * from './storage';

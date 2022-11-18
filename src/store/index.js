@@ -1,7 +1,13 @@
-import createGlobalState from './globalStore';
+import createGlobalState from './create';
 
-const useGlobalState = createGlobalState({
-    name: 'zs',
-    age: 3
-});
-export default useGlobalState;
+// 用户信息
+export const useGlobalUserState = createGlobalState(
+    {
+        // userName: '',
+        // userImage: '',
+        // accountType: '',
+        name: 'zs',
+        age: 3
+    },
+    'user',
+);
