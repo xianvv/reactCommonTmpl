@@ -69,8 +69,9 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "start:washCar": "cross-env myPage=washCar node scripts/start.js",
-    "build:washCar": "cross-env myPage=washCar node scripts/build.js",
+    "start:washCar": "cross-env myPage=washCar yarn start",
+    "build:washCar": "cross-env myPage=washCar yarn build",
+    "build:all": "node scripts/buildAll.js",
     "test": "node scripts/test.js"
   },
   "eslintConfig": {
