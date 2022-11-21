@@ -50,26 +50,45 @@ const resolveModule = (resolveFn, filePath) => {
 
   return resolveFn(`${filePath}.js`);
 };
-
+function getMyPageConfig() {
+  const { myPage } = process.env;
+  const srcPath = myPage ? `myPage/${myPage}` : 'src';
+  return {
+    appBuild: myPage ? `build/${myPage}` : 'build/base',
+    appIndexJs: `${srcPath}/index`,
+    appSrc: `${srcPath}`,
+    testsSetup: `${srcPath}/setupTests`,
+    proxySetup: `${srcPath}/setupProxy.js`,
+    swSrc: `${srcPath}/service-worker`
+  };
+}
+const { appBuild, appIndexJs, appSrc,
+  testsSetup, proxySetup, swSrc } = getMyPageConfig();
 // config after eject: we're in ./config/
 module.exports = {
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),
-  appBuild: resolveApp(buildPath),
+  // appBuild: resolveApp(buildPath),
+  appBuild: resolveApp(appBuild),
+  // appIndexJs: resolveModule(resolveApp, 'src/index'),
+  appIndexJs: resolveModule(resolveApp, appIndexJs),
+  // appSrc: resolveApp('src'),
+  appSrc: resolveApp(appSrc),
+  // testsSetup: resolveModule(resolveApp, 'src/setupTests'),
+  testsSetup: resolveModule(resolveApp, testsSetup),
+  // proxySetup: resolveApp('src/setupProxy.js'),
+  proxySetup: resolveApp(proxySetup),
+  // swSrc: resolveModule(resolveApp, 'src/service-worker'),
+  swSrc: resolveModule(resolveApp, swSrc),
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html'),
-  appIndexJs: resolveModule(resolveApp, 'src/index'),
   appPackageJson: resolveApp('package.json'),
-  appSrc: resolveApp('src'),
   appTsConfig: resolveApp('tsconfig.json'),
   appJsConfig: resolveApp('jsconfig.json'),
   yarnLockFile: resolveApp('yarn.lock'),
-  testsSetup: resolveModule(resolveApp, 'src/setupTests'),
-  proxySetup: resolveApp('src/setupProxy.js'),
   appNodeModules: resolveApp('node_modules'),
   appWebpackCache: resolveApp('node_modules/.cache'),
   appTsBuildInfoFile: resolveApp('node_modules/.cache/tsconfig.tsbuildinfo'),
-  swSrc: resolveModule(resolveApp, 'src/service-worker'),
   publicUrlOrPath,
 };
 

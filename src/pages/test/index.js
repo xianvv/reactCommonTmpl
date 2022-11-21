@@ -1,5 +1,5 @@
 import config, { env } from '@/config';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import api from '@/api/modules/example';
 import { getPageLogger, webRecorder } from '@/utils';
 import adapter from '@/adapter';
@@ -7,7 +7,7 @@ import toast from '@/components/modal/toast';
 import confirm from '@/components/modal/confirm';
 import CompA from './comp/CompA';
 import CompB from './comp/CompB';
-import {useGlobalUserState as useGlobalState} from "@/store";
+import { useGlobalUserState as useGlobalState } from "@/store";
 import { useNavigate } from 'react-router-dom';
 import './index.scss';
 
@@ -16,7 +16,6 @@ console.log(config, env);
 export default function Test() {
     const [globalState, setGlobalState] = useGlobalState();
     const navigate = useNavigate();
-    const [name, setName] = useState();
     const content = <input value={globalState.name} onChange={({ target }) => setGlobalState({ name: target.value })} />;
 
     useEffect(() => {
@@ -32,9 +31,8 @@ export default function Test() {
 
     async function confirmTest() {
         const r = await confirm(content, () => {
-            return name === '6';
-            // console.log('777');
-            // return false;
+            console.log('777');
+            return false;
         });
         console.log(r ? '行' : '不行');
     }
@@ -49,6 +47,7 @@ export default function Test() {
         <p>全局状态：{JSON.stringify(globalState)}</p>
         <CompA />
         <CompB />
+        {content}
         <p>录屏：</p>
         <div><button onClick={() => { navigate('/play') }}>play</button></div>
     </div>);

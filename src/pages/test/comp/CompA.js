@@ -1,4 +1,4 @@
-import {useGlobalUserState as useGlobalState} from "@/store";
+import { useGlobalUserState as useGlobalState } from "@/store";
 
 const CompA = () => {
     const [globalState, setGlobalState] = useGlobalState();

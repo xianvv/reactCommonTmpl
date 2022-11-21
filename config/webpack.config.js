@@ -27,7 +27,8 @@ const ForkTsCheckerWebpackPlugin =
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const createEnvironmentHash = require('./webpack/persistentCache/createEnvironmentHash');
-
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const isBundleAnalyzer = process.env.GENERATE_BUNDLE_ANALYZER_REPORT === 'true'
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 
@@ -757,6 +758,7 @@ module.exports = function (webpackEnv) {
             },
           },
         }),
+      isEnvProduction && isBundleAnalyzer && new BundleAnalyzerPlugin()
     ].filter(Boolean),
     // Turn off performance processing because we utilize
     // our own hints via the FileSizeReporter
